@@ -1,11 +1,11 @@
-- name: Include NodeJs
+- name: import NodeJs
   ansible.builtin.include_role:
     name: common
     task_from: nodejs
 
-- name: Start Catalogue service
+- name: start user service
   ansible.builtin.systemd:
-    name: catalogue
+    name: user
     state: restarted
     enabled: yes
-    daemon-reload: yes
+    daemon_reload: yes

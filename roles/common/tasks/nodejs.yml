@@ -1,4 +1,4 @@
-- name: Install NodeJs
+- name: Install NodeJs for {{COMPONENT}}
   ansible.builtin.yum:
     name: ["nodejs","make","gcc-c++"]
     state: present
@@ -14,17 +14,17 @@
 
 - name: Remove Existing Code
   ansible.builtin.file:
-     path: /home/roboshop/catalogue
+     path: /home/roboshop/{{COMPONENT}}
      state: absent
 
 - name: Copy App Code
   ansible.builtin.copy:
-    src: /tmp/catalogue-main/
-    dest: /home/roboshop/catalogue
+    src: /tmp/{{COMPONENT}}-main/
+    dest: /home/roboshop/{{COMPONENT}}
     remote_src: true
-  become_user: roboshop  
+  become_user: roboshop
 
-- name: Install NodeJs dependencies
+- name: Install NodeJs Dependencies
   community.general.npm:
-    path: /home/roboshop/catalogue
+    path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop    

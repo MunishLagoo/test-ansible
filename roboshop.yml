@@ -9,4 +9,10 @@
   hosts: mongodb
   become: true
   roles:
-    -mongodb
+    - mongodb
+
+- name: setup catalogue
+  hosts: catalogue
+  become: true
+  roles:
+    - catalogue
