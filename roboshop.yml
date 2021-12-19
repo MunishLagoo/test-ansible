@@ -1,0 +1,12 @@
+- name: setup frontend
+  hosts: frontend
+  become: true
+  tags: frontend
+  roles:
+    - frontend
+
+- name: setup MongoDB
+  hosts: mongodb
+  become: true
+  roles:
+    -mongodb

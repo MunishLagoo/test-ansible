@@ -1,0 +1,31 @@
+- name: Install Nginx
+  ansible.builtin.yum:
+    name: nginx
+    state: latest
+
+- name: start Nginx Service
+  ansible.builtin.systemd:
+    state: restarted
+    name: nginx
+    enabled: yes
+
+- name: Download Code
+  ansible.builtin.include_role:
+    name: common
+    task_from: Download
+
+- name: Remove Old Content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Copy the Htdocs Content
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static
+    dest: /usr/share/nginx/html
+    remote_user: yes 
+
+- name: Copy roboshop Config file
+  ansible.builtin.template:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf

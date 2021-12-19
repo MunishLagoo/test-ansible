@@ -1,0 +1,6 @@
+- name : Demo on CLI variables
+  hosts: all
+  tasks:
+    - name: Access CLI variables
+      ansible.builtin.debug:
+        msg: URL = {{URL}}
