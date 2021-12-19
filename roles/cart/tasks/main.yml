@@ -2,10 +2,3 @@
   ansible.builtin.include_role:
     name: common
     task_from: nodejs
-
-- name: start cart service
-  ansible.builtin.systemd:
-    name: cart
-    state: restarted
-    enabled: yes
-    daemon-reloaded: yes
