@@ -8,7 +8,7 @@
   ansible.builtin.user:
     name: roboshop
   when: APP_TYPE == "backend"  
-
+  register: app_user_info
 
 - name: Remove Existing Code
   ansible.builtin.file:
@@ -23,3 +23,4 @@
     remote_src: true
   become_user: "{{APP_USER}}"
   when: APP_TYPE == "backend"
+

@@ -33,4 +33,16 @@
   hosts: user
   become: true
   roles:
-    - user    
+    - user
+
+- name: setup mysql
+  hosts: mysql
+  become: true
+  roles:
+    - mysql
+
+- name: setup shipping
+  hosts: shipping
+  become: true
+  roles:
+    - shipping    

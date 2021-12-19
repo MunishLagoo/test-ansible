@@ -12,17 +12,14 @@
 - name: Download Code
   ansible.builtin.include_role:
     name: common
-    task_from: Download
-
-- name: Remove Old Content
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent
+    task_from: download
+  vars:
+    APP_LOCATION: /usr/share/nginx/html/
 
 - name: Copy the Htdocs Content
   ansible.builtin.copy:
-    src: /tmp/frontend-main/static
-    dest: /usr/share/nginx/html
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html/
     remote_user: yes 
 
 - name: Copy roboshop Config file
