@@ -16,3 +16,21 @@
   become: true
   roles:
     - catalogue
+
+- name: setup redis
+  hosts: redis
+  become: true
+  roles:
+    - redis
+
+- name: setup cart
+  hosts: cart
+  become: true
+  roles:
+    - cart
+
+- name: setup user
+  hosts: user
+  become: true
+  roles:
+    - user    
