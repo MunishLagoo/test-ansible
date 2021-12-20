@@ -7,7 +7,7 @@
     state: present
 
 - name: Download Code
-  ansible.builtin.include_code:
+  ansible.builtin.include_role:
     name: common
     tasks_from: download
   vars:
