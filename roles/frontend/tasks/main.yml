@@ -20,7 +20,7 @@
   ansible.builtin.copy:
     src: /tmp/frontend-main/static/
     dest: /usr/share/nginx/html/
-    remote_user: yes 
+    remote_src: yes 
 
 - name: Copy roboshop Config file
   ansible.builtin.template:
