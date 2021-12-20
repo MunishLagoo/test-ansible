@@ -9,7 +9,7 @@
 - name: Download python
   ansible.builtin.include_role:
     name: common
-    task_from: download
+    tasks_from: download
   vars:
     APP_LOCATION: "/home/roboshop/{{COMPONENT}}"
     APP_USER: roboshop
@@ -38,4 +38,4 @@
 - name: Download Systemd
   ansible.builtin.include_role:
     name: common
-    task_from: systemd    
+    tasks_from: systemd    
