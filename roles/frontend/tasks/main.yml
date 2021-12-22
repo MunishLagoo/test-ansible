@@ -9,12 +9,13 @@
     tasks_from: download
   vars:
     APP_LOCATION: /usr/share/nginx/html/
-
-- name: Copy the Htdocs Content
-  ansible.builtin.copy:
-    src: /tmp/frontend-main/static/
-    dest: /usr/share/nginx/html/
-    remote_src: yes 
+    
+# Nexus Extract Code
+# - name: Copy the Htdocs Content
+#   ansible.builtin.copy:
+#     src: /tmp/frontend-main/static/
+#     dest: /usr/share/nginx/html/
+#     remote_src: yes 
 
 - name: Copy roboshop Config file
   ansible.builtin.template:
