@@ -29,7 +29,7 @@
   ansible.builtin.file:
     path: "{{APP_LOCATION}}"
     state: directory
-    when: APP_TYPE == "frontend" or APP_TYPE == "backend"
+  when: APP_TYPE == "frontend" or APP_TYPE == "backend"
 
 - name: Download {{COMPONENT}} Code
   ansible.builtin.get_url:
