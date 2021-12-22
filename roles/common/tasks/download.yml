@@ -1,8 +1,8 @@
-- name: Download {{COMPONENT}} Code
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
-    dest: /tmp
-    remote_src: yes
+# - name: Download {{COMPONENT}} Code
+#   ansible.builtin.unarchive:
+#     src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+#     dest: /tmp
+#     remote_src: yes
 
 - name: Add app user roboshop
   ansible.builtin.user:
@@ -16,11 +16,31 @@
      state: absent
   when: APP_TYPE == "frontend" or APP_TYPE == "backend"   
 
-- name: Copy App Code
-  ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/
-    dest: "{{APP_LOCATION}}"
-    remote_src: true
-  become_user: "{{APP_USER}}"
-  when: APP_TYPE == "backend"
+# - name: Copy App Code
+#   ansible.builtin.copy:
+#     src: /tmp/{{COMPONENT}}-main/
+#     dest: "{{APP_LOCATION}}"
+#     remote_src: true
+#   become_user: "{{APP_USER}}"
+#   when: APP_TYPE == "backend"
 
+
+- name: Create App Code
+  ansible.builtin.file:
+    path: "{{APP_LOCATION}}"
+    state: directory
+    when: APP_TYPE == "frontend" or APP_TYPE == "backend"
+
+- name: Download {{COMPONENT}} Code
+  ansible.builtin.get_url:
+    url: http://172.31.10.172:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: "{{APP_LOCATION}}"
+    remote_src: yes
+    username: "{{NEXUS_USER}}"
+    password: "{{NEXUS_PASS}}"
+
+- name: Extract {{COMPONENT}} Code
+  ansible.builtin.unarchive:
+    src: /tmp/{{COMPONENT}}.zip
+    dest: "{{APP_LOCATION}}"
+    remote_src: yes    
