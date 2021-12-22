@@ -35,7 +35,6 @@
   ansible.builtin.get_url:
     url: http://172.31.10.172:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: "{{APP_LOCATION}}"
-    remote_src: yes
     username: "{{NEXUS_USER}}"
     password: "{{NEXUS_PASS}}"
 
