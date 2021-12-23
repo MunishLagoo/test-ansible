@@ -10,12 +10,13 @@
   vars:
     APP_LOCATION: /usr/share/nginx/html/
     
-# Nexus Extract Code
-# - name: Copy the Htdocs Content
-#   ansible.builtin.copy:
-#     src: /tmp/frontend-main/static/
-#     dest: /usr/share/nginx/html/
-#     remote_src: yes 
+   ###Extract Code from Git
+- name: Copy the Htdocs Content
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html/
+    remote_src: yes 
+  when : APP_VERSION is not defined  
 
 - name: Copy roboshop Config file
   ansible.builtin.template:
