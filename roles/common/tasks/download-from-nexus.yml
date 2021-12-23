@@ -20,8 +20,8 @@
   ansible.builtin.get_url:
     url: http://172.31.10.172:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /tmp/{{COMPONENT}}.zip
-    username: "{{NEXUS_USER}}"
-    password: "{{NEXUS_PASS}}"
+    url_username: "{{NEXUS_USER}}"
+    url_password: "{{NEXUS_PASS}}"
 
 - name: Extract {{COMPONENT}} Code
   ansible.builtin.unarchive:
